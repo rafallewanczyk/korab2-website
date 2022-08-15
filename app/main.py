@@ -1,12 +1,8 @@
-from flask import Flask
+from flask import Flask, current_app
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='web/static', static_url_path='')
 
 
 @app.route("/")
 def home_view():
-    return "<a href='test'><h1>hello-world</h1></a>"
-
-@app.route("/test")
-def test_view():
-    return "<h1>this is test view</h1>"
+    return current_app.send_static_file('index.html')
